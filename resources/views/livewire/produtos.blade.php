@@ -36,6 +36,8 @@
                         <td class="border px-4 py-2">{{ $produto->descricao }}</td>
                         <td class="border px-4 py-2">
                         <button wire:click="edit({{ $produto->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</button>
+                        <button wire:click="show({{ $produto->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Mostrar</button>
+
                             <button wire:click="delete({{ $produto->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Apagar</button>
                         </td>
                     </tr>

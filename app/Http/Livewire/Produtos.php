@@ -10,64 +10,40 @@ class Produtos extends Component
    public $produtos, $nome, $descricao, $produtos_id;
     public $isOpen = 0;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+ 
     public function render()
     {
         $this->produtos = Produto::all();
         return view('livewire.produtos');
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+ 
     public function create()
     {
         $this->resetInputFields();
         $this->openModal();
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+  
     public function openModal()
     {
         $this->isOpen = true;
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+ 
     public function closeModal()
     {
         $this->isOpen = false;
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+  
     private function resetInputFields(){
         $this->nome = '';
         $this->produtos = '';
         $this->produtos_id = '';
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+  
     public function store()
     {
         $this->validate([
@@ -81,16 +57,14 @@ class Produtos extends Component
         ]);
 
         session()->flash('message',
-            $this->produtos_id ? 'Blog Updated Successfully.' : 'Blog Created Successfully.');
+            $this->produtos_id ? 'Produto Atualizado com Sucesso.' : 'Produto Criado com Sucessso.');
 
         $this->closeModal();
         $this->resetInputFields();
     }
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+ 
+
+
     public function edit($id)
     {
         $produtos = Produto::findOrFail($id);
@@ -101,14 +75,22 @@ class Produtos extends Component
         $this->openModal();
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    public function show($id)
+    {
+        $produtos = Produto::findOrFail($id);
+        $this->produtos_id = $id;
+        $this->nome = $produtos->nome;
+        $this->descricao = $produtos->descricao;
+
+        $this->openModal();
+    }
+
+
+
+
     public function delete($id)
     {
         Produto::find($id)->delete();
-        session()->flash('message', 'Blog Deleted Successfully.');
+        session()->flash('message', 'Produto Apagado com Sucesso.');
     }
 }

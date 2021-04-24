@@ -1,5 +1,4 @@
 <?php
-use App\Http\Livewire\Blogs;
 use App\Http\Livewire\Produtos;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +22,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 
-Route::get('/blog', Blogs::class);
 
 Route::get('/produtos', Produtos::class);
 
